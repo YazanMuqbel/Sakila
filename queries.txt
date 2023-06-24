@@ -1,0 +1,56 @@
+QUERY 1:
+
+SELECT customer.first_name, last_name, email, address
+FROM customer
+INNER JOIN address ON customer.address_id = address.address_id
+INNER JOIN city ON address.city_id = city.city_id
+WHERE city.city_id = 312;
+
+
+******************
+Query 2:
+
+SELECT film.film_id, title
+FROM film
+INNER JOIN film_category ON film.film_id = film_category.film_id
+INNER JOIN category ON film_category.category_id = category.category_id
+WHERE category.category_id = 5;
+
+*************************************************
+Query 3: 
+
+
+SELECT film.title, film.release_year
+FROM film
+INNER JOIN film_actor ON film.film_id = film_actor.film_id
+INNER JOIN actor ON film_actor.actor_id = actor.actor_id
+WHERE actor.actor_id = 5;
+
+
+*****************************************************
+Quert 6:
+
+SELECT actor.first_name, actor.last_name, actor.last_update
+FROM actor
+INNER JOIN film_actor ON actor.actor_id = film_actor.actor_id
+WHERE film_actor.film_id = 369;
+
+***********************************************************
+Query 8:
+
+SELECT film.title 
+FROM film
+INNER JOIN film_actor ON film.film_id = film_actor.film_id
+INNER JOIN actor ON film_actor.actor_id = actor.actor_id
+WHERE actor.first_name = 'Sandra' AND actor.last_name = 'Kilmer'
+AND film.film_id IN (
+SELECT film_id
+FROM film_category
+INNER JOIN category ON film_category.category_id = category.category_id
+WHERE category.name = 'Action'
+);
+
+
+
+
+
